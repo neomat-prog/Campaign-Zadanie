@@ -1,0 +1,20 @@
+@use "../../styles/variables";
+@use "../../styles/mixins";
+@use "sass:color";
+
+.button {
+  border: none;
+  border-radius: variables.$input-border-radius; 
+  padding: variables.$spacing-sm variables.$spacing-md;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex; 
+  align-items: center;
+  justify-content: center;
+  gap: variables.$spacing-xs;
+  font-size: 0.9rem; 
+
+}
