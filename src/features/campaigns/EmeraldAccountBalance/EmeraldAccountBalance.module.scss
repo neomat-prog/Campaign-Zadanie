@@ -3,7 +3,10 @@
 @use "sass:color";
 
 .emeraldAccountBalanceCard {
-  @include mixins.gradient-bg(variables.$primary-color, variables.$gradient-end);
+  @include mixins.gradient-bg(
+    variables.$primary-color,
+    variables.$gradient-end
+  );
   border-radius: variables.$card-border-radius;
   @include mixins.card-shadow;
   padding: variables.$spacing-xl;
