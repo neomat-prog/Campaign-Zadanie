@@ -1,11 +1,8 @@
-import React from 'react'
-import DashboardPage from './pages/DashboardPage'
-import "./styles/App.module.scss"
+import React from "react";
+import DashboardPage from "./pages/DashboardPage";
 
 const App = () => {
-  return (
-    <DashboardPage />
-  )
-}
+  return <DashboardPage />;
+};
 
-export default App
+export default App;
