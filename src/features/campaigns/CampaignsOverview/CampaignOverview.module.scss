@@ -1,0 +1,120 @@
+@use "../../../styles/variables";
+@use "../../../styles/mixins";
+
+.campaignListSection {
+  margin-top: variables.$spacing-xl;
+
+  @include mixins.media-sm {
+    padding: 0 variables.$spacing-md;
+  }
+
+  @include mixins.media-lg {
+    margin-top: calc(variables.$spacing-xl * 1.5);
+    padding: 0 variables.$spacing-lg;
+  }
+}
+
+.listTitle {
+  color: variables.$primary-color;
+  text-align: center;
+  margin-bottom: variables.$spacing-lg;
+  font-weight: 700;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: variables.$spacing-sm * -1;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      variables.$primary-color,
+      lighten(variables.$primary-color, 20%)
+    );
+    border-radius: 2px;
+  }
+
+  @include mixins.media-md {
+    font-size: 2.2em;
+    margin-bottom: variables.$spacing-xl;
+
+    &::after {
+      width: 80px;
+      height: 4px;
+      bottom: variables.$spacing-md * -1;
+    }
+  }
+
+  @include mixins.media-lg {
+    font-size: 2.5em;
+    letter-spacing: -0.02em;
+    background: linear-gradient(
+      135deg,
+      variables.$primary-color,
+      lighten(variables.$primary-color, 15%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    &::after {
+      width: 100px;
+      height: 5px;
+    }
+  }
+}
+
+.noCampaigns {
+  text-align: center;
+  color: variables.$secondary-color;
+  font-style: italic;
+  padding: variables.$spacing-xl;
+  border: 2px dashed rgba(variables.$secondary-color, 0.3);
+  border-radius: variables.$border-radius;
+  background: linear-gradient(
+    135deg,
+    rgba(variables.$secondary-color, 0.02),
+    rgba(variables.$secondary-color, 0.05)
+  );
+  transition: all 0.3s ease;
+
+  @include mixins.media-lg {
+    padding: calc(variables.$spacing-xl * 1.5);
+    border-radius: calc(variables.$border-radius * 1.5);
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    border-color: rgba(variables.$secondary-color, 0.4);
+    background: rgba(variables.$secondary-color, 0.08);
+  }
+}
+
+.campaignsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: variables.$spacing-md;
+
+  @include mixins.media-sm {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: variables.$spacing-lg;
+  }
+
+  @include mixins.media-md {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: variables.$spacing-xl;
+  }
+
+  @include mixins.media-lg {
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: calc(variables.$spacing-xl * 1.2);
+  }
+
+  @include mixins.media-xl {
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: calc(variables.$spacing-xl * 1.5);
+  }
+}
