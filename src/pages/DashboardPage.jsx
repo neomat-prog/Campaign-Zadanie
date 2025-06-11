@@ -61,7 +61,7 @@ function DashboardPage() {
   return (
     <div className={styles.dashboardContainer}>
       <header className={styles.dashboardHeader}>
-        <h1 className={styles.appTitle}>Manage your Campaigns</h1>
+        <h1 className={styles.appTitle}>Zarządzaj swoimi Kampaniami</h1>
         <div className={styles.userProfile}>
           <p className={styles.greeting}>Hi User!</p>
         </div>

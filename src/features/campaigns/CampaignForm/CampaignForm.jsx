@@ -135,6 +135,8 @@ const CampaignForm = ({
       }
     }
 
+    // Handle radius
+
     const radius = parseFloat(formData.radius);
     if (isNaN(radius) || radius <= 0) {
       newErrors.radius = "Promień musi być liczbą większą od zera.";
