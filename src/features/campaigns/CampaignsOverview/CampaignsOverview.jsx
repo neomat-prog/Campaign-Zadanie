@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CampaignItem from "./components/CampaignItem";
-import styles from "./CampaignList.module.scss";
+import styles from "./CampaignOverview.module.scss";
 import Modal from "../../../components/Modal/Modal";
 
 const CampaignOverview = ({ campaigns, onDelete, onEdit }) => {
