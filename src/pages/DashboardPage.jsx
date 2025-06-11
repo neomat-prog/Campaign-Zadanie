@@ -62,9 +62,9 @@ function DashboardPage() {
     <div className={styles.dashboardContainer}>
       <header className={styles.dashboardHeader}>
         <h1 className={styles.appTitle}>Zarządzaj swoimi Kampaniami</h1>
-        <div className={styles.userProfile}>
-          <p className={styles.greeting}>Hi User!</p>
-        </div>
+        {/* <div className={styles.userProfile}>
+          <p className={styles.greeting}>Witaj Reklamowcu!</p>
+        </div> */}
       </header>
 
       <div className={styles.mainDashboardContent}>
