@@ -1,13 +1,108 @@
-# React + Vite
+# 🚀 Campaign Manager App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Manage your marketing campaigns with ease! This intuitive web application provides a streamlined interface to create, track, and update your campaigns, ensuring you stay organized and effective in your outreach efforts.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Our Campaign Manager App offers a comprehensive set of functionalities to handle your campaigns from start to finish:
 
-## Expanding the ESLint configuration
+- **Create Campaigns (C)**: Easily add new campaigns with all the necessary details
+- **Read Campaigns (R)**: View a list of all your campaigns and access their specific information
+- **Update Campaigns (U)**: Modify existing campaign details to keep them current
+- **Delete Campaigns (D)**: Remove campaigns that are no longer active or relevant
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# app-campaign-react
+## 🧪 Mock Data
+
+For development and testing purposes, the application includes a set of mock data. This allows you to immediately interact with pre-populated campaigns without needing to manually create them, facilitating quick testing of the CRUD operations.
+
+## 🛠️ Tech Stack
+
+This application is built using modern web technologies to ensure a robust, responsive, and user-friendly experience:
+
+- **React**: A declarative, efficient, and flexible JavaScript library for building user interfaces
+- **JavaScript**: The programming language for the web, enabling interactive and dynamic content
+- **HTML5**: The standard markup language for creating web pages
+- **CSS3**: The styling language used to describe the look and formatting of a document written in HTML
+- **Sass (SCSS)**: A powerful professional-grade CSS extension language that helps you write maintainable, themeable, and well-structured stylesheets
+
+## 🚀 Getting Started
+
+Follow these simple steps to get the Campaign Manager App up and running on your local machine:
+
+### Prerequisites
+
+Make sure you have Node.js installed on your machine. You can download it from [nodejs.org](https://nodejs.org/).
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/neomat-prog/Campaign-Zadanie.git
+   ```
+
+2. **Navigate into the project directory**:
+   ```bash
+   cd campaign-manager-app
+   ```
+
+3. **Install dependencies**:
+   
+   Using npm:
+   ```bash
+   npm install
+   ```
+   
+   Or using Yarn:
+   ```bash
+   yarn install
+   ```
+
+4. **Start the development server**:
+   
+   Using npm:
+   ```bash
+   npm start
+   ```
+   
+   Or using Yarn:
+   ```bash
+   yarn start
+   ```
+
+The application should now be running in your browser at `http://localhost:3000`.
+
+## 🖥️ Usage
+
+Once the application is running:
+
+- You'll see a list of existing campaigns (populated with mock data)
+- Use the "Add New Campaign" button to create a new entry
+- Click on individual campaigns to view their details or use the "Edit" and "Delete" options
+
+## 📁 Project Structure
+
+```
+campaign-manager-app/
+├── public/
+│   ├── index.html
+│   └── ...
+├── src/
+│   ├── components/
+│   ├── styles/
+│   ├── data/
+│   ├── App.js
+│   └── index.js
+├── package.json
+└── README.md
+```
+
+
+
+If you have any questions or suggestions, feel free to reach out:
+
+- GitHub: [@neomat-prog](https://github.com/neomat-prog)
+- Email: kacperbd92@gmail.com
+
+---
+
+
