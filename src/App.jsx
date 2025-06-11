@@ -1,8 +1,9 @@
 import React from 'react'
+import DashboardPage from './pages/DashboardPage'
 
 const App = () => {
   return (
-    <div>App</div>
+    <DashboardPage />
   )
 }
 

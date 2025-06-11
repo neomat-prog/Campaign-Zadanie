@@ -2,6 +2,32 @@
 @use "../styles/mixins";
 @use "sass:color";
 
+.dashboardContainer {
+  min-height: 100vh;
+  background-color: variables.$background-color;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: variables.$text-color;
+  display: flex;
+  flex-direction: column;
+  padding: variables.$spacing-lg;
+
+  @include mixins.media-md {
+    padding: variables.$spacing-xl;
+  }
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: variables.$spacing-xl;
+  flex-wrap: wrap;
+
+  @include mixins.media-sm {
+    margin-bottom: variables.$spacing-xxl;
+  }
+}
+
 .appTitle {
   font-size: 1.8rem;
   font-weight: 700;
@@ -16,5 +42,33 @@
 
   @include mixins.media-lg {
     font-size: 3rem;
+  }
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: variables.$spacing-md;
+  margin-top: variables.$spacing-md;
+  @include mixins.media-sm {
+    margin-top: 0;
+  }
+}
+
+.greeting {
+  font-weight: 600;
+  color: variables.$light-text-color;
+  font-size: 1.1rem;
+}
+
+.mainDashboardContent {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-xl;
+
+  @include mixins.media-lg {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: variables.$spacing-xxl;
   }
 }
