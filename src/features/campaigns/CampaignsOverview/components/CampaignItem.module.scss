@@ -1,0 +1,119 @@
+@use "../../../../styles/variables";
+@use "../../../../styles/mixins";
+@use "sass:color";
+
+.campaignItem {
+  background-color: variables.$card-background;
+  border-radius: variables.$card-border-radius;
+  @include mixins.card-shadow;
+  padding: variables.$spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-md;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 5px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  @include mixins.media-md {
+    padding: variables.$spacing-xl;
+  }
+}
+
+.campaignName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: variables.$primary-color;
+  margin-top: 0;
+  margin-bottom: variables.$spacing-sm;
+  background: linear-gradient(
+    90deg,
+    variables.$primary-color,
+    color.adjust(variables.$primary-color, $lightness: 10%)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: variables.$spacing-sm;
+  margin-bottom: variables.$spacing-md;
+
+  @include mixins.media-sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.detailItem {
+  margin: 0;
+  font-size: 0.95rem;
+  color: variables.$light-text-color;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.value {
+  font-weight: 600;
+  color: variables.$text-color;
+}
+
+.statusRow {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  padding-top: variables.$spacing-sm;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: variables.$spacing-xs;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  svg {
+    font-size: 1em;
+  }
+
+  &.statusOn {
+    @include mixins.gradient-bg(
+      variables.$success-color,
+      color.adjust(variables.$success-color, $lightness: 10%)
+    );
+  }
+
+  &.statusOff {
+    @include mixins.gradient-bg(
+      variables.$danger-color,
+      color.adjust(variables.$danger-color, $lightness: 10%)
+    );
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-md;
+  margin-top: variables.$spacing-lg;
+
+  @include mixins.media-sm {
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: variables.$spacing-md;
+  }
+}

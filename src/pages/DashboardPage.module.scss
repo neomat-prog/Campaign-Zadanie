@@ -61,6 +61,15 @@
   font-size: 1.1rem;
 }
 
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid variables.$primary-color;
+  box-shadow: 0 2px 8px variables.$shadow-color;
+}
+
 .mainDashboardContent {
   display: flex;
   flex-direction: column;
