@@ -64,8 +64,6 @@ const CampaignForm = ({
     }));
   };
 
-  // Handle Keywords e.g auto, promocja etc.
-
   const handleKeywordInputChange = (e) => {
     const value = e.target.value;
     setFormData((prevData) => ({ ...prevData, keywordInput: value }));
@@ -121,21 +119,7 @@ const CampaignForm = ({
     if (isNaN(fund) || fund <= 0) {
       newErrors.campaignFund =
         "Fundusz kampanii musi być liczbą większą od zera.";
-    } else if (!initialData && fund > emeraldBalance) {
-      newErrors.campaignFund = `Brak wystarczających środków. Dostępne: ${emeraldBalance.toFixed(
-        2
-      )} PLN.`;
-    } else if (initialData) {
-      const oldFund = initialData.campaignFund;
-      const fundDifference = fund - oldFund;
-      if (fundDifference > 0 && emeraldBalance < fundDifference) {
-        newErrors.campaignFund = `Brak wystarczających środków na zwiększenie funduszu. Potrzeba: ${fundDifference.toFixed(
-          2
-        )} PLN.`;
-      }
     }
-
-    // Handle radius
 
     const radius = parseFloat(formData.radius);
     if (isNaN(radius) || radius <= 0) {
@@ -148,17 +132,47 @@ const CampaignForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
+      let campaignFundToSubmit = parseFloat(formData.campaignFund);
+      const oldFund = initialData ? initialData.campaignFund : 0;
+      const fundDifference = campaignFundToSubmit - oldFund;
+      let cappingMessage = "";
+
+      if (
+        initialData &&
+        fundDifference > 0 &&
+        emeraldBalance < fundDifference
+      ) {
+        campaignFundToSubmit = oldFund + emeraldBalance;
+        cappingMessage = `Żądany fundusz kampanii "${formData.name}" (${
+          formData.campaignFund
+        } PLN) przekracza dostępne środki. Fundusz kampanii został ograniczony do ${campaignFundToSubmit.toFixed(
+          2
+        )} PLN. Twój Balans Emerald wynosi teraz 0 PLN.`;
+      } else if (!initialData && campaignFundToSubmit > emeraldBalance) {
+        campaignFundToSubmit = emeraldBalance;
+        cappingMessage = `Żądany fundusz kampanii "${formData.name}" (${
+          formData.campaignFund
+        } PLN) przekracza dostępne środki. Fundusz kampanii został ograniczony do ${campaignFundToSubmit.toFixed(
+          2
+        )} PLN. Twój Balans Emerald wynosi teraz 0 PLN.`;
+      }
+
       const campaignData = {
         id: initialData ? initialData.id : generateUniqueId(),
         name: formData.name,
         keywords: formData.keywords,
         bidAmount: parseFloat(formData.bidAmount),
-        campaignFund: parseFloat(formData.campaignFund),
+        campaignFund: campaignFundToSubmit,
         status: formData.status,
         town: formData.town,
         radius: parseFloat(formData.radius),
       };
+
       const success = onSubmit(campaignData);
+
+      if (cappingMessage) {
+        alert(cappingMessage);
+      }
 
       if (!initialData && success !== false) {
         setFormData({
@@ -183,8 +197,6 @@ const CampaignForm = ({
 
   return (
     <div className={styles.campaignFormWrapper}>
-      {" "}
-      
       <h2 className={styles.formTitle}>
         {initialData ? "Edytuj Kampanię" : "Dodaj Nową Kampanię"}
       </h2>

@@ -2,74 +2,119 @@
 @use "../../../styles/mixins";
 
 .campaignsOverviewSection {
-  flex-grow: 1;
-  background-color: variables.$card-background;
-  border-radius: variables.$card-border-radius;
-  @include mixins.card-shadow;
   padding: variables.$spacing-lg;
+  max-width: 1200px;
+  margin: 0 auto;
 
-  @include mixins.media-md {
+  @include mixins.media-lg {
     padding: variables.$spacing-xl;
   }
 }
 
 .header {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: variables.$spacing-md;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: variables.$spacing-xl;
+  flex-wrap: wrap;
+  gap: variables.$spacing-md;
 
   @include mixins.media-sm {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: nowrap;
   }
 }
 
 .title {
+  font-size: 1.8em;
   color: variables.$primary-color;
-  font-size: 1.8rem;
-  font-weight: 700;
   margin: 0;
+  flex-grow: 1;
+  font-weight: 700;
 
-  @include mixins.media-sm {
-    font-size: 2.2rem;
+  @include mixins.media-lg {
+    font-size: 2em;
   }
 }
 
 .noCampaigns {
   text-align: center;
+  font-size: 1.1em;
   color: variables.$light-text-color;
-  font-style: italic;
-  padding: variables.$spacing-xl;
-  border: 2px dashed variables.$border-color;
+  padding: variables.$spacing-xl variables.$spacing-lg;
+  background-color: variables.$card-background;
   border-radius: variables.$border-radius;
-  background-color: variables.$background-color;
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-color: darken(variables.$border-color, 5%);
-    background-color: darken(variables.$background-color, 2%);
-  }
+  margin-top: variables.$spacing-lg;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid variables.$border-color;
 }
 
 .campaignsGrid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: variables.$spacing-lg;
-
-  @include mixins.media-sm {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: variables.$spacing-xl;
-  }
+  margin-top: variables.$spacing-lg;
 
   @include mixins.media-lg {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: variables.$spacing-xxl;
+    gap: variables.$spacing-xl;
   }
+}
 
-  @include mixins.media-xl {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+.filterModalContent {
+  width: 100%;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: variables.$spacing-md variables.$spacing-lg;
+  border-bottom: 1px solid variables.$border-color;
+  background-color: variables.$background-color;
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 1.5em;
+  color: variables.$primary-color;
+  font-weight: 700;
+
+  @include mixins.media-sm {
+    font-size: 1.6em;
   }
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 2.2em;
+  color: variables.$light-text-color;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    color: variables.$danger-color;
+    transform: rotate(90deg);
+  }
+}
+
+.modalBody {
+  padding: variables.$spacing-lg;
+  background-color: variables.$card-background;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-sm;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: variables.$spacing-md;
+  padding: variables.$spacing-md variables.$spacing-lg;
+  border-top: 1px solid variables.$border-color;
+  background-color: variables.$background-color;
 }
