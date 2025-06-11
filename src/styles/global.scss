@@ -22,3 +22,18 @@ body {
     background-attachment: fixed;
   }
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: variables.$spacing-md;
+
+  @include mixins.media-sm {
+    padding: variables.$spacing-lg;
+  }
+
+  @include mixins.media-lg {
+    max-width: 1400px;
+    padding: variables.$spacing-xl;
+  }
+}
