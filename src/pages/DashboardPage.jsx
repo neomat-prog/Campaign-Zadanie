@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
 import useCampaigns from "../hooks/useCampaigns";
-import Button from "../components/Button/Button";
 
 import EmeraldAccountBalance from "../features/campaigns/EmeraldAccountBalance/EmeraldAccountBalance";
 
@@ -31,7 +30,6 @@ function DashboardPage() {
 
       <div className={styles.mainDashboardContent}>
         <EmeraldAccountBalance balance={emeraldBalance} />
-        <Button children={"hello"} />
       </div>
     </div>
   );
