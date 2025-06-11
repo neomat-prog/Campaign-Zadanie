@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import CampaignItem from "./components/CampaignItem";
-import styles from "./CampaignOverview.module.scss";
+import styles from "./CampaignsOverview.module.scss"; 
 import Modal from "../../../components/Modal/Modal";
+import Button from "../../../components/Button/Button";
 
-const CampaignOverview = ({ campaigns, onDelete, onEdit }) => {
+const CampaignsOverview = ({ campaigns, onDelete, onEdit, onAddCampaign }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [campaignToDelete, setCampaignToDelete] = useState(null);
 
@@ -25,30 +26,31 @@ const CampaignOverview = ({ campaigns, onDelete, onEdit }) => {
     setCampaignToDelete(null);
   };
 
-  if (!campaigns || campaigns.length === 0) {
-    return (
-      <section className={styles.campaignListSection}>
-        <h2 className={styles.listTitle}>Twoje Kampanie</h2>
+  return (
+    <section className={styles.campaignsOverviewSection}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Twoje Kampanie</h2>
+        <Button onClick={onAddCampaign} variant="primary">
+          + Dodaj Nową Kampanię
+        </Button>
+      </div>
+
+      {campaigns.length === 0 ? (
         <p className={styles.noCampaigns}>
           Brak aktywnych kampanii. Dodaj nową kampanię, aby rozpocząć!
         </p>
-      </section>
-    );
-  }
-
-  return (
-    <section className={styles.campaignListSection}>
-      <h2 className={styles.listTitle}>Twoje Kampanie</h2>
-      <div className={styles.campaignGrid}>
-        {campaigns.map((campaign) => (
-          <CampaignItem
-            key={campaign.id}
-            campaign={campaign}
-            onDelete={() => handleDeleteClick(campaign)}
-            onEdit={onEdit}
-          />
-        ))}
-      </div>
+      ) : (
+        <div className={styles.campaignsGrid}>
+          {campaigns.map((campaign) => (
+            <CampaignItem
+              key={campaign.id}
+              campaign={campaign}
+              onDelete={() => handleDeleteClick(campaign)}
+              onEdit={onEdit}
+            />
+          ))}
+        </div>
+      )}
 
       {campaignToDelete && (
         <Modal
@@ -63,4 +65,4 @@ const CampaignOverview = ({ campaigns, onDelete, onEdit }) => {
   );
 };
 
-export default CampaignOverview;
+export default CampaignsOverview;

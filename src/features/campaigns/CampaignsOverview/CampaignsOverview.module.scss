@@ -1,0 +1,75 @@
+@use "../../../styles/variables";
+@use "../../../styles/mixins";
+
+.campaignsOverviewSection {
+  flex-grow: 1;
+  background-color: variables.$card-background;
+  border-radius: variables.$card-border-radius;
+  @include mixins.card-shadow;
+  padding: variables.$spacing-lg;
+
+  @include mixins.media-md {
+    padding: variables.$spacing-xl;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: variables.$spacing-md;
+  margin-bottom: variables.$spacing-xl;
+
+  @include mixins.media-sm {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.title {
+  color: variables.$primary-color;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+
+  @include mixins.media-sm {
+    font-size: 2.2rem;
+  }
+}
+
+.noCampaigns {
+  text-align: center;
+  color: variables.$light-text-color;
+  font-style: italic;
+  padding: variables.$spacing-xl;
+  border: 2px dashed variables.$border-color;
+  border-radius: variables.$border-radius;
+  background-color: variables.$background-color;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: darken(variables.$border-color, 5%);
+    background-color: darken(variables.$background-color, 2%);
+  }
+}
+
+.campaignsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: variables.$spacing-lg;
+
+  @include mixins.media-sm {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: variables.$spacing-xl;
+  }
+
+  @include mixins.media-lg {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: variables.$spacing-xxl;
+  }
+
+  @include mixins.media-xl {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
