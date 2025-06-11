@@ -1,0 +1,125 @@
+@use "../../styles/variables";
+@use "../../styles/mixins";
+@use "sass:color";
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: variables.$spacing-md;
+  backdrop-filter: blur(5px);
+}
+
+.modal {
+  background: white;
+  border-radius: variables.$card-border-radius;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.1); // Stronger shadow
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInScale 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  position: relative;
+
+  @include mixins.media-sm {
+    max-width: 450px;
+  }
+
+  &.wide {
+    max-width: 90%;
+    @include mixins.media-md {
+      max-width: 700px;
+    }
+    @include mixins.media-lg {
+      max-width: 900px;
+    }
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: variables.$spacing-md;
+  right: variables.$spacing-md;
+  background: none;
+  border: none;
+  font-size: 2.2em;
+  cursor: pointer;
+  color: variables.$light-text-color;
+  transition: color 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+
+  &:hover {
+    color: variables.$danger-color;
+    transform: rotate(90deg);
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: variables.$spacing-md variables.$spacing-lg;
+  border-bottom: 1px solid variables.$border-color;
+  background-color: variables.$background-color;
+
+  h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: variables.$primary-color;
+    font-weight: 700;
+    @include mixins.media-sm {
+      font-size: 1.6em;
+    }
+  }
+}
+
+.modalBody {
+  padding: variables.$spacing-lg;
+  line-height: 1.6;
+  color: variables.$text-color;
+
+  p {
+    margin: 0;
+    font-size: 1em;
+    @include mixins.media-sm {
+      font-size: 1.05em;
+    }
+  }
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: variables.$spacing-md;
+  padding: variables.$spacing-md variables.$spacing-lg;
+  border-top: 1px solid variables.$border-color;
+  background-color: variables.$background-color;
+
+  .button {
+    padding: variables.$spacing-sm variables.$spacing-lg;
+    font-size: 0.95em;
+    @include mixins.media-sm {
+      padding: variables.$spacing-md variables.$spacing-xl;
+      font-size: 1em;
+    }
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

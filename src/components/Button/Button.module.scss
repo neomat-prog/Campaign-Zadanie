@@ -4,17 +4,123 @@
 
 .button {
   border: none;
-  border-radius: variables.$input-border-radius; 
+  border-radius: variables.$input-border-radius;
   padding: variables.$spacing-sm variables.$spacing-md;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  display: inline-flex; 
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: variables.$spacing-xs;
-  font-size: 0.9rem; 
+  font-size: 0.9rem;
 
+  @include mixins.media-lg {
+    padding: variables.$spacing-md variables.$spacing-lg;
+    font-size: 1rem;
+  }
+
+  &.primary {
+    @include mixins.gradient-bg(
+      variables.$primary-color,
+      variables.$gradient-end
+    );
+    color: white;
+    box-shadow: 0 4px 15px color.change(variables.$primary-color, $alpha: 0.4);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px color.change(variables.$primary-color, $alpha: 0.5);
+    }
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 10px color.change(variables.$primary-color, $alpha: 0.3);
+    }
+  }
+
+  &.secondary {
+    background: variables.$card-background;
+    color: variables.$primary-color;
+    border: 2px solid variables.$primary-color;
+    box-shadow: 0 2px 8px variables.$shadow-color;
+
+    &:hover {
+      @include mixins.gradient-bg(
+        variables.$primary-color,
+        variables.$secondary-color
+      );
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px color.change(variables.$primary-color, $alpha: 0.3);
+    }
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &.iconSecondary {
+    background: transparent;
+    color: variables.$light-text-color;
+    padding: variables.$spacing-xs variables.$spacing-sm;
+    border: 1px solid variables.$border-color;
+    border-radius: variables.$border-radius;
+
+    &:hover {
+      color: variables.$primary-color;
+      background-color: lighten(
+        variables.$primary-color,
+        45%
+      ); // Light background on hover
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(variables.$primary-color, 0.2);
+    }
+    &:active {
+      transform: translateY(0);
+    }
+    svg {
+      font-size: 1.1em;
+    }
+  }
+
+  &.iconDanger {
+    background: transparent;
+    color: variables.$light-text-color;
+    padding: variables.$spacing-xs variables.$spacing-sm;
+    border: 1px solid variables.$border-color;
+    border-radius: variables.$border-radius;
+
+    &:hover {
+      color: variables.$danger-color;
+      background-color: lighten(variables.$danger-color, 40%);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(variables.$danger-color, 0.2);
+    }
+    &:active {
+      transform: translateY(0);
+    }
+    svg {
+      font-size: 1.1em;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: color.change(white, $alpha: 0.4);
+    transition: width 0.6s, height 0.6s;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+
+  &:active::before {
+    width: 300px;
+    height: 300px;
+  }
 }
