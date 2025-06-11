@@ -1,0 +1,24 @@
+@use "variables";
+@use "mixins";
+@use "base";
+
+body {
+  font-family: "Roboto", "Geist Mono", -apple-system, BlinkMacSystemFont,
+    "Arial", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(
+    135deg,
+    variables.$background-color,
+    lighten(variables.$background-color, 2%)
+  );
+  color: variables.$text-color;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @include mixins.media-lg {
+    font-size: 16px;
+    background-attachment: fixed;
+  }
+}
