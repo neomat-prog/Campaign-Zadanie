@@ -1,44 +1,19 @@
-
 @use "../../../styles/variables";
 @use "../../../styles/mixins";
+@use "sass:color";
 
-.campaignFormSection {
-  background: linear-gradient(
-    135deg,
-    white,
-    rgba(variables.$primary-color, 0.01)
-  );
+.campaignFormWrapper {
+  background-color: variables.$card-background;
   padding: variables.$spacing-lg;
   border-radius: variables.$border-radius;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
-  margin-top: variables.$spacing-xl;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  position: relative;
+
   overflow: hidden;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(
-      90deg,
-      variables.$primary-color,
-      lighten(variables.$primary-color, 15%),
-      darken(variables.$primary-color, 5%)
-    );
-  }
-
-  @include mixins.media-sm {
+  @include mixins.media-md {
     padding: variables.$spacing-xl;
-  }
-
-  @include mixins.media-lg {
-    padding: calc(variables.$spacing-xl * 1.5);
-    border-radius: calc(variables.$border-radius * 1.5);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
   }
 }
 
@@ -47,52 +22,13 @@
   text-align: center;
   margin-bottom: variables.$spacing-xl;
   font-weight: 700;
-  position: relative;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: variables.$spacing-sm * -1;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(
-      90deg,
-      variables.$primary-color,
-      lighten(variables.$primary-color, 20%)
-    );
-    border-radius: 2px;
-  }
-
-  @include mixins.media-md {
-    font-size: 2.2em;
-    margin-bottom: calc(variables.$spacing-xl * 1.2);
-
-    &::after {
-      width: 100px;
-      height: 4px;
-      bottom: variables.$spacing-md * -1;
-    }
-  }
+  font-size: 2em;
+  padding-bottom: variables.$spacing-md;
+  border-bottom: 2px solid variables.$border-color;
+  margin-top: 0;
 
   @include mixins.media-lg {
     font-size: 2.5em;
-    letter-spacing: -0.02em;
-    background: linear-gradient(
-      135deg,
-      variables.$primary-color,
-      lighten(variables.$primary-color, 15%)
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: calc(variables.$spacing-xl * 1.5);
-
-    &::after {
-      width: 120px;
-      height: 5px;
-    }
   }
 }
 
@@ -110,53 +46,25 @@
   @include mixins.media-lg {
     gap: variables.$spacing-xl;
   }
+}
 
-  :nth-child(1),
-  :nth-child(2),
-  :nth-child(6) {
-    @include mixins.media-md {
-      grid-column: span 2;
-    }
+.fullWidth {
+  @include mixins.media-md {
+    grid-column: 1 / -1;
   }
 }
 
 .formGroup {
-  margin-bottom: variables.$spacing-md;
-
-  @include mixins.media-lg {
-    margin-bottom: variables.$spacing-lg;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: variables.$spacing-sm;
 
   label {
-    display: block;
-    margin-bottom: variables.$spacing-sm;
     font-weight: 600;
     color: variables.$text-color;
     font-size: 0.95rem;
 
     @include mixins.media-lg {
-      font-size: 1rem;
-      margin-bottom: variables.$spacing-md;
-    }
-  }
-
-  input,
-  select,
-  textarea {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    border-radius: variables.$border-radius;
-
-    &:focus {
-      border-color: variables.$primary-color;
-      box-shadow: 0 0 0 3px rgba(variables.$primary-color, 0.1),
-        0 2px 8px rgba(0, 0, 0, 0.1);
-      outline: none;
-    }
-
-    @include mixins.media-lg {
-      border-radius: calc(variables.$border-radius * 1.2);
-      padding: variables.$spacing-md;
       font-size: 1rem;
     }
   }
@@ -164,46 +72,22 @@
 
 .radioGroup {
   display: flex;
-  flex-direction: column;
-  gap: variables.$spacing-sm;
-
-  @include mixins.media-sm {
-    flex-direction: row;
-    gap: variables.$spacing-md;
-  }
-
-  @include mixins.media-lg {
-    gap: variables.$spacing-lg;
-  }
+  gap: variables.$spacing-lg;
+  align-items: center;
 
   label {
-    font-weight: 500;
     display: flex;
     align-items: center;
-    gap: variables.$spacing-sm;
-    padding: variables.$spacing-sm;
-    border-radius: variables.$border-radius;
-    transition: background-color 0.2s ease;
     cursor: pointer;
+    font-weight: 500;
+    color: variables.$light-text-color;
 
-    &:hover {
-      background-color: rgba(variables.$primary-color, 0.05);
-    }
-
-    @include mixins.media-lg {
-      padding: variables.$spacing-md;
-      gap: variables.$spacing-md;
-      border-radius: calc(variables.$border-radius * 1.2);
-    }
-  }
-
-  input[type="radio"] {
-    width: auto;
-    margin-right: 0;
-    accent-color: variables.$primary-color;
-
-    @include mixins.media-lg {
-      transform: scale(1.2);
+    input[type="radio"] {
+      margin-right: variables.$spacing-xs;
+      width: 18px;
+      height: 18px;
+      accent-color: variables.$primary-color;
+      cursor: pointer;
     }
   }
 }
@@ -211,12 +95,8 @@
 .errorText {
   color: variables.$danger-color;
   font-size: 0.85em;
-  margin-top: variables.$spacing-sm;
   font-weight: 500;
-
-  @include mixins.media-lg {
-    font-size: 0.9rem;
-  }
+  margin-top: variables.$spacing-xs;
 }
 
 .suggestions {
@@ -224,72 +104,31 @@
   flex-wrap: wrap;
   gap: variables.$spacing-sm;
   margin-top: variables.$spacing-sm;
-  background: linear-gradient(
-    135deg,
-    lighten(variables.$background-color, 3%),
-    lighten(variables.$background-color, 5%)
-  );
-  padding: variables.$spacing-md;
-  border-radius: variables.$border-radius;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  max-height: 140px;
+  background-color: variables.$background-color;
+  padding: variables.$spacing-sm;
+  border-radius: variables.$input-border-radius;
+  border: 1px solid variables.$border-color;
+  max-height: 150px;
   overflow-y: auto;
-
-  @include mixins.media-lg {
-    padding: variables.$spacing-lg;
-    border-radius: calc(variables.$border-radius * 1.2);
-    max-height: 160px;
-    gap: variables.$spacing-md;
-  }
-
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(variables.$primary-color, 0.3);
-    border-radius: 3px;
-
-    &:hover {
-      background: rgba(variables.$primary-color, 0.5);
-    }
-  }
 }
 
 .suggestionTag {
-  background: linear-gradient(
-    135deg,
-    lighten(variables.$primary-color, 35%),
-    lighten(variables.$primary-color, 30%)
-  );
+  background-color: variables.$card-background;
   color: variables.$primary-color;
-  padding: 6px variables.$spacing-md;
-  border-radius: calc(variables.$border-radius * 1.5);
+  padding: 6px 12px;
+  border-radius: 20px;
   cursor: pointer;
   font-size: 0.85em;
   font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(variables.$primary-color, 0.2);
+  transition: all 0.2s ease;
+  border: 1px solid variables.$border-color;
 
   &:hover {
-    background: linear-gradient(
-      135deg,
-      lighten(variables.$primary-color, 25%),
-      lighten(variables.$primary-color, 20%)
-    );
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(variables.$primary-color, 0.2);
-  }
-
-  @include mixins.media-lg {
-    padding: 8px variables.$spacing-lg;
-    font-size: 0.9rem;
-    border-radius: calc(variables.$border-radius * 2);
+    background-color: variables.$primary-color;
+    color: white;
+    border-color: variables.$primary-color;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px color.change(variables.$primary-color, $alpha: 0.2);
   }
 }
 
@@ -297,62 +136,40 @@
   display: flex;
   flex-wrap: wrap;
   gap: variables.$spacing-sm;
-  margin-top: variables.$spacing-sm;
-
-  @include mixins.media-lg {
-    gap: variables.$spacing-md;
-    margin-top: variables.$spacing-md;
-  }
+  margin-top: variables.$spacing-md;
+  min-height: 40px;
 }
 
 .keywordTag {
-  background: linear-gradient(
-    135deg,
+  @include mixins.gradient-bg(
     variables.$primary-color,
-    darken(variables.$primary-color, 5%)
-  );
+    variables.$secondary-color
+  ); // Gradient for keywords
   color: white;
-  padding: 6px variables.$spacing-md;
-  border-radius: calc(variables.$border-radius * 1.5);
+  padding: 6px 12px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   font-size: 0.9em;
   font-weight: 500;
-  box-shadow: 0 2px 8px rgba(variables.$primary-color, 0.3);
-  transition: all 0.2s ease;
-
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(variables.$primary-color, 0.4);
-  }
-
-  @include mixins.media-lg {
-    padding: 8px variables.$spacing-lg;
-    font-size: 0.95rem;
-    border-radius: calc(variables.$border-radius * 2);
-  }
+  animation: fadeIn 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   .removeTag {
     background: none;
     border: none;
     color: white;
     margin-left: variables.$spacing-sm;
-    font-size: 1.1em;
+    font-size: 1.2em;
     cursor: pointer;
-    padding: 2px;
+    padding: 0;
     line-height: 1;
-    transition: all 0.2s ease;
-    border-radius: 50%;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
 
     &:hover {
-      background-color: rgba(white, 0.2);
+      opacity: 1;
       transform: scale(1.1);
-    }
-
-    @include mixins.media-lg {
-      margin-left: variables.$spacing-md;
-      font-size: 1.2em;
-      padding: 4px;
     }
   }
 }
@@ -360,22 +177,24 @@
 .formActions {
   display: flex;
   flex-direction: column;
-  gap: variables.$spacing-sm;
+  gap: variables.$spacing-md;
   justify-content: flex-end;
   margin-top: variables.$spacing-lg;
 
-  @include mixins.media-sm {
-    flex-direction: row;
-    gap: variables.$spacing-md;
-  }
-
   @include mixins.media-md {
-    grid-column: span 2;
-    margin-top: variables.$spacing-xl;
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: center;
   }
+}
 
-  @include mixins.media-lg {
-    gap: variables.$spacing-lg;
-    margin-top: calc(variables.$spacing-xl * 1.2);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

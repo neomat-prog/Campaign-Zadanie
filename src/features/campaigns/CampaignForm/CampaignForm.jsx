@@ -64,11 +64,13 @@ const CampaignForm = ({
     }));
   };
 
+  // Handle Keywords e.g auto, promocja etc.
+
   const handleKeywordInputChange = (e) => {
     const value = e.target.value;
     setFormData((prevData) => ({ ...prevData, keywordInput: value }));
 
-    if (value.length > 1) {
+    if (value.length > 0) {
       setSuggestedKeywords(
         prePopulatedKeywords
           .filter(
@@ -154,7 +156,6 @@ const CampaignForm = ({
         town: formData.town,
         radius: parseFloat(formData.radius),
       };
-
       const success = onSubmit(campaignData);
 
       if (!initialData && success !== false) {
@@ -179,12 +180,13 @@ const CampaignForm = ({
   }));
 
   return (
-    <section className={styles.campaignFormSection}>
+    <div className={styles.campaignFormWrapper}>
+      {" "}
+      
       <h2 className={styles.formTitle}>
         {initialData ? "Edytuj Kampanię" : "Dodaj Nową Kampanię"}
       </h2>
       <form onSubmit={handleSubmit} className={styles.form}>
-        {/* Nazwa kampanii */}
         <Input
           label="Nazwa Kampanii *"
           id="name"
@@ -194,7 +196,6 @@ const CampaignForm = ({
           error={errors.name}
         />
 
-        {/* Słowa kluczowe */}
         <div className={styles.formGroup}>
           <label htmlFor="keywordInput">Słowa kluczowe *</label>
           <Input
@@ -243,7 +244,6 @@ const CampaignForm = ({
           )}
         </div>
 
-        {/* Kwota oferty */}
         <Input
           label="Kwota Oferty * (PLN)"
           id="bidAmount"
@@ -256,7 +256,6 @@ const CampaignForm = ({
           error={errors.bidAmount}
         />
 
-        {/* Fundusz kampanii */}
         <Input
           label="Fundusz Kampanii * (PLN)"
           id="campaignFund"
@@ -269,7 +268,6 @@ const CampaignForm = ({
           error={errors.campaignFund}
         />
 
-        {/* Status */}
         <div className={styles.formGroup}>
           <label>Status *</label>
           <div className={styles.radioGroup}>
@@ -296,7 +294,6 @@ const CampaignForm = ({
           </div>
         </div>
 
-        {/* Miasto */}
         <Select
           label="Miasto"
           id="town"
@@ -305,7 +302,6 @@ const CampaignForm = ({
           onChange={handleChange}
           options={[
             { value: "", label: "Wybierz miasto (opcjonalnie)" },
-
             ...townOptions,
           ]}
         />
@@ -332,7 +328,7 @@ const CampaignForm = ({
           )}
         </div>
       </form>
-    </section>
+    </div>
   );
 };
 
